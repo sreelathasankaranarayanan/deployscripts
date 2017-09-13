@@ -132,7 +132,7 @@ map_url_route_to_container_group (){
                 else
                     log_and_echo "$IC_COMMAND group inspect ${GROUP_NAME} failed, try again." 
                 fi
-                sleep 3
+                sleep 9
             done
             if [ "${ROUTE_PROGRESS}" != "false" ] || [ "${ROUTE_SUCCESSFUL}" != "true" ]; then
                 log_and_echo "$ERROR" "Failed to map route $HOSTNAME.$DOMAIN to $MY_GROUP_NAME."
