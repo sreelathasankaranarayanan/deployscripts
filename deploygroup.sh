@@ -488,10 +488,10 @@ ${EXT_DIR}/utilities/sendMessage.sh -l info -m "New ${DEPLOY_TYPE} copntainer gr
 
 check_num='^[0-9]+$'
 if [ -z "$DESIRED_INSTANCES" ]; then
-    export DESIRED_INSTANCES=2
+    export DESIRED_INSTANCES=1
 elif ! [[ "$DESIRED_INSTANCES" =~ $check_num ]] ; then
     log_and_echo "$WARN" "DESIRED_INSTANCES value is not a number, defaulting to 2 and continuing deploy process."
-    export DESIRED_INSTANCES=2
+    export DESIRED_INSTANCES=1
 fi
 
 check_num='^[0-9]+$'
