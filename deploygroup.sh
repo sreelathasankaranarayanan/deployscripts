@@ -99,7 +99,8 @@ map_url_route_to_container_group (){
         # make sure we are using CF from our extension so that we can always call target.   
         local MYSPACE=$(${EXT_DIR}/cf target | sed -n -e 's/^,*Space://p' | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//')
         log_and_echo "Route does not exist, attempting to create for ${HOSTNAME} ${DOMAIN} in ${MYSPACE}"
-        cf create-route "${MYSPACE}" ${DOMAIN} -n ${HOSTNAME}
+        # cf create-route "${MYSPACE}" ${DOMAIN} -n ${HOSTNAME}
+	cf create-route "${MYSPACE}" ${DOMAIN}
         RESULT=$?
         log_and_echo "$WARN" "The created route will be reused for this stage, and will persist as an organizational route even if this container group is removed"
         log_and_echo "$WARN" "If you wish to remove this route use the following command: cf delete-route ROUTE_DOMAIN -n ROUTE_HOSTNAME"
@@ -111,7 +112,8 @@ map_url_route_to_container_group (){
     if [ $RESULT -eq 0 ]; then
         # Map hostnameName.domainName to the container group.
         log_and_echo "map route to container group: $IC_COMMAND route map --hostname ${HOSTNAME} --domain $DOMAIN $GROUP_NAME"
-        ice_retry route map --hostname $HOSTNAME --domain $DOMAIN $GROUP_NAME
+        # ice_retry route map --hostname $HOSTNAME --domain $DOMAIN $GROUP_NAME
+	ice_retry route map --domain $DOMAIN $GROUP_NAME
         RESULT=$?
         if [ $RESULT -eq 0 ]; then
             # check route status
