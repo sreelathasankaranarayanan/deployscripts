@@ -77,16 +77,16 @@ get_routes () {
 # takes a MY_GROUP_NAME, ROUTE_HOSTNAME and ROUTE_DOMAIN as the parameters
 map_url_route_to_container_group (){
     local GROUP_NAME=$1
-    local HOSTNAME=$2
+    local HOSTNAME=""
     local DOMAIN=$3
     if [ -z ${GROUP_NAME} ]; then
         log_and_echo "$ERROR" "Expected container group name to be passed into route_container_group"
         return 1
     fi
-    if [ -z ${HOSTNAME} ]; then
-        log_and_echo "$ERROR" "Expected hostname name to be passed into route_container_group"
-        return 1
-    fi
+   # if [ -z ${HOSTNAME} ]; then
+   #     log_and_echo "$ERROR" "Expected hostname name to be passed into route_container_group"
+   #     return 1
+   # fi
     if [ -z ${DOMAIN} ]; then
         log_and_echo "$ERROR" "Expected domain name to be passed into route_container_group"
         return 1
